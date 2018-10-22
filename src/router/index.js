@@ -8,6 +8,9 @@ import NotFound from '@/views/404'
 import Login from '@/views/auth/Login'
 import Admin from '@/views/Admin'
 import AdminPosts from '@/views/AdminPosts'
+import AdminCategories from '@/views/AdminCategories'
+import AdminCategoryEdit from '@/views/AdminCategoryEdit'
+import AdminTags from '@/views/AdminTags'
 import AdminComments from '@/views/AdminComments'
 import AdminPostEdit from '@/views/AdminPostEdit'
 import PostComments from '@/views/PostComments'
@@ -40,6 +43,21 @@ export default new Router({
           path: 'posts/:post',
           name: 'AdminPostEdit',
           component: AdminPostEdit
+        },
+        {
+          path: 'categories',
+          name: 'AdminCategories',
+          component: AdminCategories
+        },
+        {
+          path: 'categories/:category',
+          name: 'AdminCategoryEdit',
+          component: AdminCategoryEdit
+        },
+        {
+          path: 'tags',
+          name: 'AdminTags',
+          component: AdminTags
         },
         {
           path: 'comments/:comment',

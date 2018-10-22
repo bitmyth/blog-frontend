@@ -1,23 +1,23 @@
 <template>
         <div class="column">
             <div class="navbar-start">
-                <router-link to="/admin/posts/create" class="navbar-item" exact>
+                <router-link to="/admin/categories/create" class="navbar-item" exact>
                     <div class="buttons">
                         <a class="button is-primary">
-                            <strong>new post</strong>
+                            <strong>new category</strong>
                         </a>
                     </div>
                 </router-link>
             </div>
-            <posts :config="config"></posts>
+            <categories :config="config"></categories>
         </div>
 </template>
 
 <script>
-import Posts from '../components/Posts'
+import Categories from '../components/Categories'
 
 export default {
-  name: 'AdminPosts',
+  name: 'AdminCategories',
   data () {
     return {
       config: {
@@ -30,7 +30,7 @@ export default {
     }
   },
   components: {
-    Posts
+    Categories
   }
 }
 </script>

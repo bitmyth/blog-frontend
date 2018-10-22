@@ -17,7 +17,7 @@
                         <p class="level-item">{{post.created_at}}</p>
                     </div>
                 </nav>
-                <nav class="level ">
+                <nav class="level">
                     <!-- Right side -->
                     <div class="level-left">
                         <p  class="level-item" v-for="tag in post.tags" :key="tag.id">

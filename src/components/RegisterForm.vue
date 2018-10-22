@@ -84,6 +84,7 @@ export default {
           Session.user = data.user
           this.show = false
           Event.$emit('login')
+          this.$store.commit('login', data.user)
         })
         .catch(error => console.log(error))
     },

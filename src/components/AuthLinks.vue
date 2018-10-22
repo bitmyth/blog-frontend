@@ -1,6 +1,6 @@
 <template>
     <div class="navbar-end">
-        <div class="navbar-item" v-if="!login">
+        <div class="navbar-item" v-if="!user">
             <div class="buttons">
                 <a class="button is-primary" @click="onClickSignup">
                     <strong @click="onClickSignup">Sign up</strong>
@@ -10,8 +10,8 @@
                 </a>
             </div>
         </div>
-        <div class="navbar-item has-dropdown is-hoverable" v-if="login">
-            <router-link class="navbar-link" :to="homepage" exact>{{username}}</router-link>
+        <div class="navbar-item has-dropdown is-hoverable" v-if="user">
+            <router-link class="navbar-link" :to="homepage" exact>{{user.name}}</router-link>
             <div class="navbar-dropdown">
                 <a class="navbar-item" @click="onClickSignout"> Logout </a>
             </div>
@@ -23,11 +23,17 @@ import Session from '../models/Session'
 
 export default {
   name: 'AuthLink',
-  data: function () {
+  data () {
     return {
-      login: !!Session.user,
-      username: Session.user.name,
-      homepage: Session.admin ? '/admin' : ''
+      // user: Session.user
+    }
+  },
+  computed: {
+    homepage () {
+      return this.$store.state.roles.includes('admin') ? '/admin' : '/'
+    },
+    user () {
+      return this.$store.state.user
     }
   },
   methods: {
@@ -39,13 +45,9 @@ export default {
     },
     onClickSignout () {
       Session.clear()
-      this.login = false
+      this.$store.commit('logout')
+      this.$router.push({name: 'Home'})
     }
-  },
-  created () {
-    Event.$on('login', () => {
-      this.login = true
-    })
   }
 }
 </script>

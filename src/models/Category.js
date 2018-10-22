@@ -4,7 +4,7 @@ class Category extends Model {
   static indexUrl () {
     return this.url('/categories')
   }
-  static showUrl (id) {
+  static showRoute (id) {
     return `/categories/${id}`
   }
 }

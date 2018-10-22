@@ -21,7 +21,7 @@
             </nav>
         </div>
         <div class="media-right">
-            <button class="delete" @click="onDelete"></button>
+            <button class="delete" v-if="canDelete" @click="onDelete"></button>
         </div>
     </article>
 </template>
@@ -37,8 +37,16 @@ export default {
   methods: {
     onDelete () {
       confirm('Are sure to delete')
-      Comment.delete(this.comment.id)
-      this.$emit('delete')
+      Comment.delete(this.comment.id).then(() => {
+        this.$emit('delete')
+      })
+    }
+  },
+  computed: {
+    canDelete () {
+      let user = this.$store.state.user
+      return (user && user.id === this.comment.user_id) ||
+          this.$store.state.roles.includes('admin')
     }
   }
 }

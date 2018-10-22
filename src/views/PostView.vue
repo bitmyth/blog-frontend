@@ -1,8 +1,11 @@
 <template>
     <layout>
+        <div class="column is-three-quarters">
         <post :post="post"></post>
         <comments :post="postId" :refresh="refresh"></comments>
-        <comment-form :method="method" @store="onStore"></comment-form>
+        <comment-form :method="method" @store="onStore" v-if="this.$store.state.user"></comment-form>
+        <a class="is-link" v-else @click="showLoginForm">Login to leave a comment</a>
+        </div>
     </layout>
 </template>
 
@@ -35,6 +38,9 @@ export default {
   methods: {
     onStore () {
       this.refresh = !this.refresh
+    },
+    showLoginForm () {
+      window.Event.$emit('showLoginForm')
     }
   }
 }

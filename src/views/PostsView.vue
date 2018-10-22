@@ -1,7 +1,11 @@
 <template>
     <layout>
-        <div class="">
+        <div class="column is-three-quarters">
             <posts :config="config"></posts>
+        </div>
+        <div class="column">
+            <slot name="right-bar">
+            </slot>
         </div>
     </layout>
 </template>

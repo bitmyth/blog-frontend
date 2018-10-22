@@ -10,10 +10,15 @@ export default class Session {
     return this.user && this.user.roles && this.user.roles.includes('admin')
   }
 
+  static get roles () {
+    return this.user ? this.user.roles : []
+  }
+
   static get user () {
     if (this.token) {
-      return JSON.parse(sessionStorage.getItem(this.userStorageKey)) || {}
+      return JSON.parse(sessionStorage.getItem(this.userStorageKey)) || null
     }
+    return false
   }
 
   static set user (user) {

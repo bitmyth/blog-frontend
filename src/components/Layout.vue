@@ -1,8 +1,8 @@
 <template>
-    <div class="container">
+    <div class="">
         <login-form></login-form>
         <register-form></register-form>
-        <nav class="navbar" role="navigation" aria-label="main navigation">
+        <nav class="navbar" role="navigation" aria-label="main navigation" :class="{'is-success':hasRole('admin')}">
             <div class="navbar-brand">
                 <a class="navbar-item" href="/">
                     <img src="https://bulma.io/images/bulma-logo.png" width="112" height="28">
@@ -30,13 +30,8 @@
         <section class="section">
             <div class="container">
                 <div class="columns is-mobile">
-                    <div class="column is-three-quarters">
-                        <slot></slot>
-                    </div>
-                    <div class="column">
-                        <slot name="right-bar">
-                        </slot>
-                    </div>
+                    <slot>
+                    </slot>
                 </div>
             </div>
         </section>
@@ -53,8 +48,10 @@ import AuthLink from './AuthLinks'
 import CategoryLinks from './CategoryLinks'
 import RegisterForm from './RegisterForm'
 import LoginForm from './LoginForm'
+import AuthMixin from '../components/AuthMixin'
 
 export default {
+  mixins: [AuthMixin],
   name: 'layout',
   components: {
     LoginForm,

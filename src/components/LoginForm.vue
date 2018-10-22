@@ -28,9 +28,6 @@
                     <div class="control">
                         <button class="button is-link">Submit</button>
                     </div>
-                    <div class="control">
-                        <button class="button is-text">Cancel</button>
-                    </div>
                 </div>
             </div>
         </form>
@@ -71,7 +68,8 @@ export default {
           Session.token = data
           Session.user = data.user
           this.show = false
-          Event.$emit('login')
+          Event.$emit('login', data.user)
+          this.$store.commit('login', data.user)
         })
         .catch(error => console.log(error))
     },
